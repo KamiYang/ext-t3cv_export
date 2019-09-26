@@ -2,7 +2,7 @@
 $EM_CONF[$_EXTKEY] = [
     'title' => 'TYPO3 CONF VARS Export',
     'description' => 'Contains configuration for CSS content-rendering of the table "tt_content". This is meant as a modern substitute for the classic "content (default)" template which was based more on <font>-tags, while this is pure CSS.',
-    'category' => 'misc',
+        'category' => 'misc',
     'state' => 'alpha',
     'uploadfolder' => 0,
     'createDirs' => '',
@@ -17,6 +17,6 @@ $EM_CONF[$_EXTKEY] = [
             'typo3' => '8.7.27'
         ],
         'conflicts' => [],
-        'suggests' => [],
+        'suggests' => array(),
     ],
 ];
