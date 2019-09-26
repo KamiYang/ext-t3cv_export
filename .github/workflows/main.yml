@@ -11,4 +11,6 @@ jobs:
       - name: Composer (php-actions)
         uses: docker://composer
         with:
+          volume: /home/runner/work/ext-t3cv_export:/app
+          workdir: /app
           args: why typo3/cms
