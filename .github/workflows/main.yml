@@ -13,4 +13,4 @@ jobs:
       - name: Composer (php-actions)
         uses: docker://composer
         with:
-          args: why typo3/cms
+          args: install
