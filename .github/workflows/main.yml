@@ -11,4 +11,4 @@ jobs:
       - name: Composer Action
         uses: MilesChou/composer-action@v0.0.1
         with:
-          args: install && ls -l && pwd
+          args: install && ls && pwd
