@@ -1,10 +1,12 @@
-workflow "Run Code Review" {
-  resolves = ["PHPCS Code Review"]
-  on = "pull_request"
-}
+name: CI
 
-action "PHPCS Code Review" {
-  uses = "rtCamp/action-phpcs-code-review@master"
-  secrets = ["GH_BOT_TOKEN"]
-  args = ["PSR2"]
-}
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: PHPCS Code Review
+      uses: rtCamp/action-phpcs-code-review@v1.0.0
