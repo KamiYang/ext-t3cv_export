@@ -10,7 +10,7 @@ jobs:
       - name: Linting
         uses: docker://texthtml/phpcs
         with:
-          args: phpcs --standard=PSR2
+          args: phpcs --standard=PSR2 Classes
 
   test:
     strategy:
