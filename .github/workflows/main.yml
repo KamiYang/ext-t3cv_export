@@ -11,6 +11,5 @@ jobs:
       - name: Composer (php-actions)
         uses: php-actions/composer@v0.0.3
         with:
-          entrypoint: /github/workspace
-          command: install
+          args: install
 
