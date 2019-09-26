@@ -9,8 +9,7 @@ jobs:
 
     steps:
       - name: Composer (php-actions)
-        uses: php-actions/composer@v0.0.3
+        uses: composer/composer
         with:
-          args: install
           command: install
 
