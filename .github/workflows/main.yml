@@ -12,4 +12,5 @@ jobs:
         uses: php-actions/composer@v0.0.3
         with:
           args: install
+          command: install
 
