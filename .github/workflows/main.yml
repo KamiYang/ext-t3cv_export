@@ -3,14 +3,25 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Linting
+        uses: docker://texthtml/phpcs
+        with:
+          args: phpcs --standard=PSR2
 
+  test:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - name: Composer (php-actions)
+      - name: Composer install all dependencies
         uses: docker://composer
         with:
           args: install
