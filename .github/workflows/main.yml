@@ -11,4 +11,4 @@ jobs:
       - name: Composer (php-actions)
         uses: docker://composer
         with:
-          args: "install && ls"
+          args: diagnose
