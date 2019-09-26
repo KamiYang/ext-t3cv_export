@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Composer Action
-        uses: MilesChou/composer-action@v0.0.1
+      - name: Composer (php-actions)
+        uses: php-actions/composer@v0.0.3
         with:
-          args: install && ls && pwd
+          args: install
