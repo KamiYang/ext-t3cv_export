@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: push
 
 jobs:
   lint:
@@ -11,16 +11,11 @@ jobs:
         uses: docker://texthtml/phpcs
         with:
           args: phpcs --standard=PSR2 Classes
-
-  test:
-    strategy:
-      matrix:
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+  test: 
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+      - name: GIT checkout 
+        uses: actions/checkout@v1
       - name: Composer install all dependencies
         uses: docker://composer
         with:
