@@ -9,7 +9,6 @@ jobs:
 
     steps:
       - name: Composer (php-actions)
-        uses: composer/composer
+        uses: docker://composer
         with:
           command: install
-
