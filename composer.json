@@ -2,7 +2,7 @@
   "name": "kamiyang/ext-t3cv_export",
   "type": "typo3-cms-extension",
   "description": "Displays current project version based on 'VERSION' file or GIT revision.",
-  "homepage": "https://github.com/KamiYang/project_version",
+  "homepage": "https://github.com/KamiYang/ext-t3cv_export",
   "license": "GPL-3.0-or-later",
   "keywords": [
     "TYPO3 CMS",
@@ -19,7 +19,9 @@
     "kamiyang/t3cv_export": "self.version"
   },
   "require": {
-    "typo3/cms": "^8.7"
+    "typo3/cms": "^8.7",
+    "typo3/cms-core": "^8.7",
+    "typo3/cms-extbase": "^8.7"
   },
   "autoload": {
     "psr-4": {
@@ -43,7 +45,7 @@
     "vendor-dir": ".Build/vendor",
     "bin-dir": ".Build/bin",
     "platform": {
-      "php": "7.2"
+      "php": ">=7.0"
     }
   },
   "extra": {

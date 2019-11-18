@@ -13,7 +13,7 @@ class EnvironmentCommandController extends CommandController
     /**
      * @cli
      */
-    public function dumpTypo3ConfVarsCommand(): void
+    public function dumpTypo3ConfVarsCommand()
     {
         /** @var EnvironmentServiceInterface $service */
         $service = $this->objectManager->get(EnvironmentServiceInterface::class);
@@ -24,7 +24,7 @@ class EnvironmentCommandController extends CommandController
     /**
      * @cli
      */
-    public function exportTypo3ConfVarsToDotEnvCommand(): void
+    public function exportToDotEnvCommand()
     {
         $typo3ConfVars = $this->objectManager->get(EnvironmentServiceInterface::class)->getTypo3ConfVars(true);
         /** @var DotEnvFileWriterServiceInterface $service */

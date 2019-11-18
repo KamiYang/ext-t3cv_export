@@ -18,22 +18,18 @@ class EnvironmentService implements EnvironmentServiceInterface
         'SYS.doNotCheckReferer',
         'SYS.sitename',
         'SYS.trustedHostsPattern',
-        'TUIDB',
-        'USER',
     ];
 
     /**
      * @var array
      */
     protected $defaultConfiguration;
+
     /**
      * @var array
      */
     protected $confVars = [];
 
-    /**
-     * EnvironmentService constructor.
-     */
     public function __construct(ConfigurationManager $configurationManager)
     {
         $this->defaultConfiguration = $configurationManager->getDefaultConfiguration();
@@ -50,7 +46,7 @@ class EnvironmentService implements EnvironmentServiceInterface
         return $this->confVars;
     }
 
-    protected function getConfVarsByWhitelist(): void
+    protected function getConfVarsByWhitelist()
     {
         $confVars = $GLOBALS['TYPO3_CONF_VARS'];
         $confVars = ArrayUtility::flatten($confVars);
@@ -67,7 +63,7 @@ class EnvironmentService implements EnvironmentServiceInterface
         $this->confVars = $confVars;
     }
 
-    protected function removeDefaultValues(): void
+    protected function removeDefaultValues()
     {
         $defaultConfig = ArrayUtility::flatten($this->defaultConfiguration);
 
