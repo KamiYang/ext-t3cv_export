@@ -28,11 +28,6 @@
       "KamiYang\\T3cvExport\\": "Classes/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "KamiYang\\T3cvExport\\Tests\\": "Tests/"
-    }
-  },
   "scripts": {
     "create-extension-directory": "mkdir -p .Build/web/typo3conf/ext",
     "link-package": "ln -snvf ../../../../. .Build/web/typo3conf/ext/t3cv_export",
@@ -45,7 +40,7 @@
     "vendor-dir": ".Build/vendor",
     "bin-dir": ".Build/bin",
     "platform": {
-      "php": ">=7.0"
+      "php": "7.0"
     }
   },
   "extra": {
