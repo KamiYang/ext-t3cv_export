@@ -11,20 +11,27 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 class EnvironmentCommandController extends CommandController
 {
     /**
+     * Prints $GLOBALS[TYPO3_CONF_VARS] that will be exported
+     *
+     * Acts like a dry-run for the export command. Prints all global variables
+     * that will be exported by the export command
+     *
      * @cli
      */
-    public function dumpTypo3ConfVarsCommand(): void
+    public function dumpCommand()
     {
-        /** @var EnvironmentServiceInterface $service */
-        $service = $this->objectManager->get(EnvironmentServiceInterface::class);
-        $vars = $service->getTypo3ConfVars(true);
+        $vars = $this->objectManager->get(EnvironmentServiceInterface::class)->getTypo3ConfVars(true);
         $this->outputFormatted(DebuggerUtility::var_dump($vars, 'TYPO3_CONF_VARS', 2, true));
     }
 
     /**
+     * Export $GLOBALS[TYPO3_CONF_VARS] to .env file
+     *
+     * Exports certain $GLOBALS[TYPO3_CONF_VARS] to a .env file that lies outside of the web root.
+     *
      * @cli
      */
-    public function exportTypo3ConfVarsToDotEnvCommand(): void
+    public function exportCommand()
     {
         $typo3ConfVars = $this->objectManager->get(EnvironmentServiceInterface::class)->getTypo3ConfVars(true);
         /** @var DotEnvFileWriterServiceInterface $service */
