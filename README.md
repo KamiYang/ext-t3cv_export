@@ -19,3 +19,7 @@ Currently there are two tasks:
 | --- | --- |
 | t3cv_export:environment:dump | Prints $GLOBALS[TYPO3_CONF_VARS] that will be exported |
 | t3cv_export:environment:export | Export $GLOBALS[TYPO3_CONF_VARS] to .env file |
+
+![Usage demonstration inside a terminal] [usage]
+
+[usage]: Documentation/Images/Usage.png
