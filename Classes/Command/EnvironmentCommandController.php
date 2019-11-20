@@ -49,7 +49,7 @@ class EnvironmentCommandController extends CommandController
         $typo3ConfVars = $this->objectManager->get(EnvironmentServiceInterface::class)->getTypo3ConfVars(true);
         /** @var DotEnvFileWriterServiceInterface $service */
         $service = $this->objectManager->get(DotEnvFileWriterServiceInterface::class);
-        if (!$service->write('./.env', $typo3ConfVars, true)) {
+        if (!$service->write('./.env', $typo3ConfVars, $overwrite)) {
             $this->outputLine('<error>The file could not be written, because it already exists.</error>');
         }
     }
