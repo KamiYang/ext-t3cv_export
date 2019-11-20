@@ -42,14 +42,15 @@ class EnvironmentCommandController extends CommandController
      * Exports certain $GLOBALS[TYPO3_CONF_VARS] to a .env file that lies outside of the web root.
      *
      * @cli
+     * @param bool $overwrite Force overwrite of existing .env file
      */
-    public function exportCommand()
+    public function exportCommand(bool $overwrite = false)
     {
         $typo3ConfVars = $this->objectManager->get(EnvironmentServiceInterface::class)->getTypo3ConfVars(true);
         /** @var DotEnvFileWriterServiceInterface $service */
         $service = $this->objectManager->get(DotEnvFileWriterServiceInterface::class);
         if (!$service->write('./.env', $typo3ConfVars, true)) {
-            $this->outputLine('<error>An error occurred! The file could not be written.</error>');
+            $this->outputLine('<error>The file could not be written, because it already exists.</error>');
         }
     }
 }
