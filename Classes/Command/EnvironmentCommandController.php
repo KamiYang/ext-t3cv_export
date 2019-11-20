@@ -17,6 +17,7 @@ namespace KamiYang\T3cvExport\Command;
 
 use KamiYang\T3cvExport\Service\DotEnvFileWriterServiceInterface;
 use KamiYang\T3cvExport\Service\EnvironmentServiceInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\CommandController;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -41,12 +42,15 @@ class EnvironmentCommandController extends CommandController
      *
      * Exports certain $GLOBALS[TYPO3_CONF_VARS] to a .env file that lies outside of the web root.
      *
-     * @cli
      * @param bool $overwrite Force overwrite of existing .env file
+     * @param string $whitelist Whitelist
+     * @cli
      */
-    public function exportCommand(bool $overwrite = false)
+    public function exportCommand(bool $overwrite = false, string $whitelist = null)
     {
-        $typo3ConfVars = $this->objectManager->get(EnvironmentServiceInterface::class)->getTypo3ConfVars(true);
+        $whitelist = $whitelist ? GeneralUtility::trimExplode(',', $whitelist, true) : null;
+        $typo3ConfVars = $this->objectManager->get(EnvironmentServiceInterface::class)
+            ->getTypo3ConfVars($whitelist, true);
         /** @var DotEnvFileWriterServiceInterface $service */
         $service = $this->objectManager->get(DotEnvFileWriterServiceInterface::class);
         if (!$service->write('./.env', $typo3ConfVars, $overwrite)) {

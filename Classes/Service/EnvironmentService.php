@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\StringUtility;
 
 class EnvironmentService implements EnvironmentServiceInterface
 {
-    protected static $whitelist = [
+    protected static $defaultWhitelist = [
         'BE.lockIP',
         'DB',
         'FE.pageNotFound_handling',
@@ -47,9 +47,11 @@ class EnvironmentService implements EnvironmentServiceInterface
         $this->defaultConfiguration = $configurationManager->getDefaultConfiguration();
     }
 
-    public function getTypo3ConfVars(bool $removeDefaultValues = false): array
+    public function getTypo3ConfVars(array $whitelist = null, bool $removeDefaultValues = false): array
     {
-        $this->getConfVarsByWhitelist();
+        $whitelist = $whitelist ?? static::$defaultWhitelist;
+
+        $this->getConfVarsByWhitelist($whitelist);
 
         if ($removeDefaultValues) {
             $this->removeDefaultValues();
@@ -58,13 +60,12 @@ class EnvironmentService implements EnvironmentServiceInterface
         return $this->confVars;
     }
 
-    protected function getConfVarsByWhitelist()
+    protected function getConfVarsByWhitelist(array $whitelist)
     {
-        $confVars = $GLOBALS['TYPO3_CONF_VARS'];
-        $confVars = ArrayUtility::flatten($confVars);
+        $confVars = ArrayUtility::flatten($GLOBALS['TYPO3_CONF_VARS']);
 
         foreach ($confVars as $path => $_) {
-            foreach (static::$whitelist as $whitelistedPath) {
+            foreach ($whitelist as $whitelistedPath) {
                 if ($whitelistedPath && StringUtility::beginsWith($path, $whitelistedPath)) {
                     continue 2;
                 }

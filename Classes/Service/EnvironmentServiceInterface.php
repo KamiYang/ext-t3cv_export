@@ -17,5 +17,5 @@ namespace KamiYang\T3cvExport\Service;
 
 interface EnvironmentServiceInterface
 {
-    public function getTypo3ConfVars(bool $removeDefaultValues = false): array;
+    public function getTypo3ConfVars(array $whitelist, bool $removeDefaultValues = false): array;
 }
